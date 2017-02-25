@@ -26,6 +26,16 @@ open class PermissionsActivity: AppCompatActivity() {
     }
 
     /**
+     * Requests a number of permissions from the system.
+     *
+     * @param requestCode The request code used to handle the response for this request.
+     * @param permissions The strings representing the permissions being requested.
+     */
+    open fun requestPermissions(requestCode: Int, vararg permissions: String) {
+        ActivityCompat.requestPermissions(this, permissions, requestCode)
+    }
+
+    /**
      * Opens the settings page for this application.
      * Note: This same method exists in {@link PermissionsActivity}, but it was copied rather than call `getActivity`
      * because we cannot guarantee the user also uses PermissionsActivity.
