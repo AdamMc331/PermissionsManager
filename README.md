@@ -28,7 +28,7 @@ Implementation
 The basic steps to implement this library are as follows:
 
 1. Extend PermissionsActivity or PermissionsFragment
-2. Implement (or create a class that implements) PermissionsManager
+2. Implement (or create a class that implements) [PermissionsManager](lib/src/main/java/com/adammcneilly/permissionsmanager/PermissionsManager.kt)
 3. Add the implementation of your permissions calls! This may very depending on what you want to do with the results. For an example, look at the `permissionsCheck()` method in the `MainActivity.java` of the sample.
 
 Credits & Contact
