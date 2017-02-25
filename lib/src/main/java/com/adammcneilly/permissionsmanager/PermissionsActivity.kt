@@ -4,15 +4,15 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
+import android.support.v4.app.ActivityCompat
+import android.support.v7.app.AppCompatActivity
 
 /**
- * Fragment that handles runtime permissions.
+ * Activity that handles runtime permissions.
  *
  * Created by adam.mcneilly on 2/25/17.
  */
-open class PermissionsFragment : Fragment() {
+open class PermissionsActivity: AppCompatActivity() {
     var permissionsManager: PermissionsManager? = null
 
     /**
@@ -22,7 +22,7 @@ open class PermissionsFragment : Fragment() {
      * @return True if the user has granted this permission, false otherwise.
      */
     open fun hasPermission(permission: String): Boolean {
-        return ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
+        return ActivityCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
     }
 
     /**
@@ -35,7 +35,7 @@ open class PermissionsFragment : Fragment() {
      */
     open fun openSettings(requestCode: Int) {
         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-        val uri = Uri.fromParts("package", activity.packageName, null)
+        val uri = Uri.fromParts("package", packageName, null)
         intent.data = uri
         startActivityForResult(intent, requestCode)
     }
@@ -53,7 +53,7 @@ open class PermissionsFragment : Fragment() {
                 permissionsManager?.onPermissionGranted(permission, requestCode)
             } else {
                 // If shouldShow... returns true, it means we were denied but not blocked.
-                if (shouldShowRequestPermissionRationale(permission)) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
                     permissionsManager?.onPermissionDenied(permission, requestCode)
                 } else {
                     // User denied and hit never ask again
