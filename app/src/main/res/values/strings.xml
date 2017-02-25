@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Permissions Manager</string>
+    <string name="app_name">Permissions Manager Sample</string>
+    <string name="request_camera_permission">Request Camera Permission</string>
 </resources>
