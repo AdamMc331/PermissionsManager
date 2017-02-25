@@ -12,16 +12,6 @@ To have access to the library, add the dependency to your build.gradle:
 	compile 'com.adammcneilly:permissionsmanager:1.0.0'
 ```
 
-At the time of publication, the library has not yet been linked to JCenter, so you will also have to add the link to my Maven repository as well:
-
-```java
-	repositories {
-    	maven {
-        	url  "http://dl.bintray.com/adammc331/maven"
-    	}
-	}
-```
-
 Implementation
 --------------
 
