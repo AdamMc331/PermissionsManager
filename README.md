@@ -38,7 +38,7 @@ This library was created by [Adam McNeilly](http://adammcneilly.com).
 Version History
 ---------------
 
-####1.0.0
+#### 1.0.0
  - Initial release.
 
 License
