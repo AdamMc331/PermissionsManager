@@ -26,6 +26,32 @@ open class PermissionsActivity: AppCompatActivity() {
     }
 
     /**
+     * Determines if the user has denied a permission to the application.
+     *
+     * @param permission The permission string that we are checking against.
+     * @return True if the user has denied this permission (hit deny but not never ask again), false otherwise.
+     */
+    open fun permissionDenied(permission: String): Boolean {
+        // If shouldShow... returns true, it means we were denied but not blocked.
+        return (!hasPermission(permission) && ActivityCompat.shouldShowRequestPermissionRationale(this, permission))
+    }
+
+    /**
+     * Determines if the user has blocked a permission to the application.
+     *
+     * NOTE: This may also return true for a permission that has never been asked for, so it should
+     * be used within the proper context. For that reason I've decided to comment this out but left
+     * for education's sake.
+     *
+     * @param permission The permission string that we are checking against.
+     * @return True if the user has blocked this permission (hit deny and never ask again), false otherwise.
+     */
+//    open fun permissionBlocked(permission: String): Boolean {
+//        // User denied and hit never ask again
+//        return (!hasPermission(permission) && !ActivityCompat.shouldShowRequestPermissionRationale(this, permission))
+//    }
+
+    /**
      * Requests a number of permissions from the system.
      *
      * @param requestCode The request code used to handle the response for this request.
@@ -63,7 +89,7 @@ open class PermissionsActivity: AppCompatActivity() {
                 permissionsManager?.onPermissionGranted(permission, requestCode)
             } else {
                 // If shouldShow... returns true, it means we were denied but not blocked.
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+                if (permissionDenied(permission)) {
                     permissionsManager?.onPermissionDenied(permission, requestCode)
                 } else {
                     // User denied and hit never ask again

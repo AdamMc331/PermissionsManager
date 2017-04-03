@@ -48,7 +48,7 @@ public class MainActivity extends PermissionsActivity implements PermissionsMana
 
             if (blocked) {
                 showBlockedDialog();
-            } else if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+            } else if (permissionDenied(permission)) {
                 showExplanationDialog(permission);
             } else {
                 requestPermissions(CAMERA_PERMISSION, permission);
